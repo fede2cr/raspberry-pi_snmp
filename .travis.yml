@@ -1,0 +1,13 @@
+sudo: required
+
+dist: trusty
+
+before_install:
+  - sudo apt-get -qq update
+
+install:
+  - sudo pip install ansible
+
+script:
+  - "ansible-playbook -i sensor-adc_ads1115/ansible/inventory/hosts.example --syntax-check sensor-adc_ads1115/ansible/install_Adafruit_Python_ADS1x15.yml"
+  - "sudo ansible-playbook -i sensor-adc_ads1115/ansible/inventory/hosts.example sensor-adc_ads1115/ansible/install_Adafruit_Python_ADS1x15.yml"
