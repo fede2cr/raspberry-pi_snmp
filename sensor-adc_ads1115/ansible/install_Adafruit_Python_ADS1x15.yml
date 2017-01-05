@@ -1,0 +1,26 @@
+--
+  - name: Ansible recipe for installing Adafruit_Python_ADS1x15
+    hosts: all
+    vars:
+      module_path: "{{ ansible_env.HOME }}/Adafruit_Python_ADS1x15"
+
+    tasks:
+      - name: Installs package dependencies
+        apt:
+          name: {{ item }}
+          status: latest
+        with_items:
+          - build-essential
+          - python-dev
+          - pytho-smbus
+          - git
+        become: yes
+      - name: Downloads Adafruit_Python_ADS1x15 from github
+        git:
+          repo: https://github.com/adafruit/Adafruit_Python_ADS1x15.git
+          dest: "{{ module_path }}"
+      - name: Installs Adafruit_Python_ADS1x15
+          command: python setup.py install
+        args:
+          chdir: "{{ module_path }}"
+        become: yes
