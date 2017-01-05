@@ -19,3 +19,16 @@
         name: adafruit-ads1x15
         state: latest
       become: yes
+    - name: Enables i2c on Raspberry Pi without using raspi-config
+      lineinfile:
+        regexp: '#dtparam=i2c_arm=on'
+        dest: "/boot/config.txt"
+        line: 'dtparam=i2c_arm=on'
+        state: present
+        backrefs: yes
+      ignore_errors: true
+      become: yes
+      register: i2c_boot_config
+    - name: Print reboot needed message after changing i2c configuration
+      debug: msg="A Reboot is needed to enable i2c on the Raspberry Pi"
+      when: i2c_boot_config.changed

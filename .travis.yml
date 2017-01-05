@@ -11,3 +11,8 @@ install:
 script:
   - "ansible-playbook -i sensor-adc_ads1115/ansible/inventory/hosts.example --syntax-check sensor-adc_ads1115/ansible/install_Adafruit_Python_ADS1x15.yml"
   - "sudo ansible-playbook -i sensor-adc_ads1115/ansible/inventory/hosts.example sensor-adc_ads1115/ansible/install_Adafruit_Python_ADS1x15.yml"
+  - >
+    sudo ansible-playbook -i sensor-adc_ads1115/ansible/inventory/hosts.example sensor-adc_ads1115/ansible/install_Adafruit_Python_ADS1x15.yml
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence test: pass' && exit 0)
+    || (echo 'Idempotence test: fail' && exit 1)
