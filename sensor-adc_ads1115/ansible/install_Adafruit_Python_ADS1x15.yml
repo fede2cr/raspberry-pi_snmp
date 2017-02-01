@@ -12,12 +12,13 @@
         - python-smbus
         - git
         - i2c-tools
-        - python-pip
+        - python3-pip
       become: yes
     - name: Downloads Adafruit_Python_ADS1x15 from github
       pip:
         name: adafruit-ads1x15
         state: latest
+        executable: pip3
       become: yes
     - name: Enables i2c on Raspberry Pi without using raspi-config
       lineinfile:
