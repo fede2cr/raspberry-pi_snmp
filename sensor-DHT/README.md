@@ -3,9 +3,19 @@ Python scripts for publishing a DHT11 humidity and temperature sensor on a Raspb
 
 ## Usage:
 
-1. Copy the scripts to /usr/local/bin
+0. Install Adafruit's Python library for the DHT11 sensor
+```
+git clone https://github.com/adafruit/Adafruit_Python_DHT.git
+cd Adafruit_Python_DHT/
+sudo apt-get install build-essential python-dev
+sudo python3 setup.py install
+```
+1. Copy the Python sensor scripts to /usr/local/bin
 2. Modify snmpd.conf and add this code:
 ```
+pass .1.3.6.1.2.1.25.1.8.1 /usr/bin/python3 /usr/local/bin/DHT-temp-snmp.py
+pass .1.3.6.1.2.1.25.1.8.2 /usr/bin/python3 /usr/local/bin/DHT-hum-snmp.py
+
 extend temp               /usr/local/bin/DHT-hum-snmp.py
 extend hum                /usr/local/bin/DHT-temp-snmp.py
 ```
