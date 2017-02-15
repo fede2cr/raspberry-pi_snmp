@@ -29,7 +29,7 @@ import sys
 
 import Adafruit_DHT
 
-pin = "2";
+pin = "4";
 sensor = Adafruit_DHT.DHT11;
 
 # Try to grab a sensor reading.  Use the read_retry method which will retry up
