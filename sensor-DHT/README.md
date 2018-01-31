@@ -44,4 +44,4 @@ $ snmpwalk -c public -v2c localhost  NET-SNMP-EXTEND-MIB::nsExtendObjects
 
 
 ## See also
-* (SNMP on Raspberry with Cacti on Kbza's Blog)[http://www.kbza.org/2013/07/04/sensor-de-temperatura-snmp-con-raspberry-y-cacti/] that as used as a base for the SNMP part
+* [SNMP on Raspberry with Cacti on Kbza's Blog](http://www.kbza.org/2013/07/04/sensor-de-temperatura-snmp-con-raspberry-y-cacti/) that as used as a base for the SNMP part
